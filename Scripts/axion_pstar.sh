@@ -2,13 +2,12 @@
 
 # AxionOS Unofficial para Motorola Edge 20 Pro (pstar)
 # Baseado em: LineageOS Wiki for pstar + AxionOS Manifest on Github
-# Máquina alvo: Intel i5-5200U | 12GB RAM DDR3 | SSD SATA 512GB | Linux Mint
 
-# Otimizações para máquinas fracas:
-#  - THREADS limitadas a 2
+# Otimizações:
+#  - THREADS limitadas a 4
 #  - JACK server desabilitado
-#  - Swap recomendado de 16GB antes de compilar (Alvo está com 25GB)
-#  - Ninja limitado a 2 jobs paralelos (CPU tem apenas 2 cores)
+#  - Swap mínimo recomendado de 16GB antes de compilar (Quanto menos RAM, maior o Swap)
+#  - Ninja limitado a 4 jobs paralelos (Use um CPU de pelo menos 4 núcleos)
 #  - ccache com compressão ativada (pouco espaço para SSD limitado)
 #  - Heap do Java aumentado mas com teto seguro
 
@@ -16,21 +15,21 @@ set -e  # Em caso de falha
 
 # Configs:
 DEVICE="pstar"
-BRANCH_AXION="lineage-23.1"  # Branch atual da AxionOS (Pode mudar em Syncs futuros)
-BRANCH_LINEAGE="lineage-23.2"  # Branch do device tree LineageOS
+BRANCH_AXION="lineage-23.1"  # Branch atual da AxionOS (Pode mudar em Syncs futuros, altere se isso aconteça)
+BRANCH_LINEAGE="lineage-23.2"  # Branch do device tree LineageOS (Também pode mudar no futuro, altere caso isso aconteça)
 BUILD_DIR="$HOME/android/axion"  # Local repo da AxionOS
 BIN_DIR="$HOME/bin"  # Se não sabe o que está fazendo, não altere!
-CCACHE_DIR="$HOME/.ccache" # Se não sabe o que está fazendo, não altere!
+CCACHE_DIR="$HOME/.ccache" # Crie manualmente o ccache em sua máquina
 CCACHE_SIZE="50G"  # Padrão da Wiki
-JOBS=1  # NÃO aumente isso no seu hardware, caso ele seja fraco!
-GIT_EMAIL="joiltonsilvasec3@gmail.com" # Seu Email (Obrigatório)
-GIT_NAME="Joilton Silva"  # Seu nome (Obrigatório)
+JOBS=4  # NÃO aumente isso no seu hardware, caso ele seja fraco!
+GIT_EMAIL="username@email.com" # Seu Email (Obrigatório)
+GIT_NAME="Name"  # Seu nome (Obrigatório)
 
 # Variante de build definida por padrão (Pode ser alterado no menu)
 BUILD_VARIANT="gms_core"
 
 # Diretório onde os backups das configs serão salvos
-BACKUP_DIR="$HOME/axion_backup" # É necessário root pra manipular arquivos nessa pasta
+BACKUP_DIR="$HOME/axion_backup"
 
 # Arquivos monitorados para backup
 # Adicione aqui qualquer arquivo que você editar manualmente
@@ -84,10 +83,10 @@ check_ram_and_swap() {
 
     if [ "$total_swap_mb" -lt 8192 ]; then
         warn "Swap menor que 8GB detectado!"
-        warn "Com seus 12GB de RAM e sem swap adequado, a build PODE travar/matar processos."
+        warn "Pouca RAM e sem swap adequado, a build PODE travar/matar processos."
         warn "Execute ANTES de compilar:"
         echo ""
-        echo "  sudo fallocate -l 16G /swapfile"
+        echo "  sudo fallocate -l 16G /swapfile" # Mínimo recomendo
         echo "  sudo chmod 600 /swapfile"
         echo "  sudo mkswap /swapfile"
         echo "  sudo swapon /swapfile"
@@ -700,7 +699,7 @@ step_diagnose() {
         ["device/motorola/pstar"]="lineage-23.2"
         ["kernel/motorola/sm8250"]="lineage-23.2"   # kernel geralmente não tem branch fixa
         ["vendor/motorola/pstar"]="lineage-23.2"
-        ["vendor/motorola/sm8250-common"]="lineage-23.2"
+        ["vendor/motorola/sm8250-common"]="lineage-23.0"
     )
 
     local all_ok=true
@@ -741,8 +740,8 @@ step_diagnose() {
         echo ""
         info "Para corrigir o sm8250-common manualmente:"
         echo "  cd $BUILD_DIR/vendor/motorola/sm8250-common"
-        echo "  git fetch origin lineage-23.2"
-        echo "  git checkout lineage-23.2"
+        echo "  git fetch origin lineage-23.0"
+        echo "  git checkout lineage-23.0"
     fi
 }
 
@@ -753,7 +752,6 @@ main() {
     echo -e "${BLUE}║   AxionOS Unofficial — Motorola Edge 20 Pro (pstar)  ║${NC}"
     echo -e "${BLUE}╚══════════════════════════════════════════════════════╝${NC}"
     echo ""
-    echo -e "  Hardware        : i5-5200U | 12GB RAM | SSD 512GB | Linux Mint"
     echo -e "  Branch AxionOS  : $BRANCH_AXION"
     echo -e "  Branch DevTree  : $BRANCH_LINEAGE"
     echo -e "  Diretório build : $BUILD_DIR"
