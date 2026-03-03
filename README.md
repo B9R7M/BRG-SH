@@ -13,10 +13,6 @@ Este script **não funciona automaticamente** para qualquer dispositivo.
 Você precisará **configurar manualmente** as variáveis no topo do arquivo
 e **encontrar os repositórios corretos** para o **SEU dispositivo**. (Se disponível)
 
-Ele também **não fornece todo o conhecimento necessário** para compilar qualquer ROM sem um estudo aprofundado prévio. É indispensável possuir conhecimentos técnicos anteriores sobre o processo para prosseguir com êxito.
-
-Clique **[aqui](https://drive.google.com/drive/folders/1zojYA3EaUBtd_drbRoTjIgxNxFVzFGUI)** para descobrir o que é necessário para prosseguir com o guia.
-
 ### Fontes recomendadas
 
 - **XDA Developers** → [xdaforums.com](https://xdaforums.com)
@@ -36,7 +32,13 @@ Organizações relevantes: `LineageOS`, `TheMuppets`, `AOSPA`, `crdroidandroid`,
 
 - **Telegram / Matrix** → Grupos de desenvolvimento da ROM
   Muitos projetos têm grupos onde maintainers e usuários compartilham repositórios,
-  patches e suporte. Veja o site/GitHub da sua ROM para links de comunidade.
+  patches e suporte. Veja o site/GitHub da sua ROM para links de comunidades.
+
+### Termos essenciais
+
+Esse script também **não fornece todo o conhecimento necessário** para compilar qualquer ROM sem um estudo aprofundado prévio. É indispensável possuir conhecimentos técnicos anteriores sobre o processo para prosseguir com êxito.
+
+Clique **[aqui](https://drive.google.com/drive/folders/1zojYA3EaUBtd_drbRoTjIgxNxFVzFGUI)** para descobrir o básico necessário para prosseguir com o guia.
 
 ---
 
