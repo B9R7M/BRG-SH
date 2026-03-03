@@ -126,11 +126,7 @@ chmod +x build_rom_generic.sh
 
 O script exibirá um menu interativo:
 
-```
-╔══════════════════════════════════════════════════════════╗
-║            Build Script Genérico — ROM Android Custom               ║
-╚══════════════════════════════════════════════════════════╝
-
+```bash
   ── Setup (primeira vez) ──────────────────────────────────
   [0] Tudo do zero (todas as etapas em sequência)
   [1] Verificações iniciais do sistema
@@ -159,7 +155,7 @@ Ela executa todas as etapas em sequência, pedindo confirmação em cada uma.
 
 ---
 
-## Etapas Detalhadas
+## Etapas detalhadas
 
 ### `[1]` Verificações iniciais
 Verifica distro Linux, espaço em disco e memória disponível.
@@ -215,11 +211,66 @@ sudo rm /etc/sudoers.d/nopasswd
 ### `[3]` Configurar ambiente
 Configura `repo`, `git`, `ccache` e variáveis de ambiente no `.bashrc`/`.profile`.
 
+> [!TIP]
+> Algumas distribuições Linux exigem configuração prévia do `ccache` antes de iniciar o build — seja por restrições de permissão ou limitações do próprio sistema.
+
+### `[3.1]` Instalação
+
+```bash
+# Debian/Ubuntu
+sudo apt install ccache
+
+# Arch
+sudo pacman -S ccache
+
+# Fedora/RHEL
+sudo dnf install ccache
+```
+
+### [3.2]` Configuração básica
+
+Defina o diretório e o tamanho máximo do cache:
+
+```bash
+# Diretório padrão: ~/.cache/ccache (pode ser alterado)
+export CCACHE_DIR=~/.cache/ccache
+
+# Tamanho máximo recomendado para builds AOSP: 50–100 GB
+ccache -M 50G
+```
+
+Adicione ao `~/.bashrc` ou `~/.zshrc` para persistir:
+
+```bash
+export USE_CCACHE=1
+export CCACHE_DIR=~/.cache/ccache
+```
+
+### `[3.2.1]` Problemas comuns
+
+| Problema | Causa | Solução |
+|---|---|---|
+| `permission denied` | Diretório sem permissão de escrita | `sudo chown -R $USER ~/.cache/ccache` |
+| `ccache: not found` | Não instalado ou fora do PATH | Instale e adicione `/usr/lib/ccache` ao `$PATH` |
+| Cache não sendo usado | Variável `USE_CCACHE` não exportada | Adicione ao `.bashrc` e rode `source ~/.bashrc` |
+
+
+### `[3.3]` Verificar se está funcionando
+
+```bash
+ccache -s
+```
+
+Após um build, os campos `cache hit` devem aumentar nas execuções seguintes.
+
+---
+
 ### `[4]` Baixar source da ROM
 Inicializa o `repo` e faz o sync do source. Pode demorar **horas** dependendo
 da sua conexão (20–50 GB de download em média).
 
-> Se o sync travar ou cair no meio, basta executar novamente — ele continua de onde parou.
+> [!TIP]
+> Se o sync travar ou cair no meio, basta executar novamente, ele continua de onde parou.
 
 ### `[5]` Clonar device trees
 Clona device tree, kernel e vendor blobs. **Você precisa configurar as URLs corretas.**
@@ -233,7 +284,7 @@ Configura o target e inicia a compilação. O log é salvo em `$BUILD_DIR/build_
 
 ---
 
-## Sistema de Backup
+## Sistema de backups
 
 O script inclui um sistema de backup para **preservar modificações manuais** que seriam
 sobrescritas por um `repo sync`.
@@ -261,7 +312,7 @@ para o mais recente.
 
 ---
 
-## Diagnóstico de Problemas
+## Diagnóstico de problemas
 
 ### Branches incorretas
 Um dos problemas mais comuns. Use a opção `[d]` para verificar se todos os repositórios
@@ -309,7 +360,7 @@ grep -i "error\|failed\|FAILED" ~/android/rom/build_userdebug_*.log | tail -30
 
 ---
 
-## Chaves de Assinatura
+## Chaves de assinatura
 
 Na primeira compilação, o script gera automaticamente chaves de assinatura em `$BUILD_DIR/certs/`.
 
@@ -323,7 +374,7 @@ cp -r ~/android/rom/certs ~/minha-pasta-segura/
 
 ---
 
-## Variantes de Build
+## Variantes de build
 
 | Variante     | Uso                        | ADB Root | Descrição                          |
 |--------------|----------------------------|----------|------------------------------------|
@@ -336,7 +387,7 @@ Consulte a documentação da sua ROM.
 
 ---
 
-## Estrutura básica de Diretórios
+## Estrutura básica de diretórios
 
 ```
 ~/android/rom/          ← Source da ROM (BUILD_DIR)
