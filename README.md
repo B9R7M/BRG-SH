@@ -7,25 +7,15 @@ Baseado em: `axion_pstar.sh` (AxionOS unofficial para Motorola Edge 20 Pro).
 
 ---
 
-## Antes de Começar — Leia com Atenção!
+## Antes de Começar, leia com Atenção!
 
 Este script **não funciona automaticamente** para qualquer dispositivo.
 Você precisará **configurar manualmente** as variáveis no topo do arquivo
 e **encontrar os repositórios corretos** para o **SEU dispositivo**. (Se disponível)
 
-Ele também **não fornece todo o conhecimento necessário** para compilar qualquer ROM sem um estudo aprofundado prévio. É indispensável possuir conhecimentos técnicos anteriores sobre o processo para realizá-lo corretamente.
+Ele também **não fornece todo o conhecimento necessário** para compilar qualquer ROM sem um estudo aprofundado prévio. É indispensável possuir conhecimentos técnicos anteriores sobre o processo para prosseguir com êxito.
 
----
-
-## Onde Encontrar as Fontes (device tree, kernel, vendor)
-
-Você precisará de três repositórios principais:
-
-| Repositório         | O que é                                | Onde buscar                              |
-|---------------------|----------------------------------------|------------------------------------------|
-| **Device tree**     | Configurações específicas do hardware  | GitHub, LineageOS Wiki, XDA              |
-| **Kernel source**   | Código-fonte do kernel Linux           | GitHub, XDA (nem sempre é necessário)    |
-| **Vendor blobs**    | Binários proprietários do fabricante   | TheMuppets, extração do firmware stock   |
+Clique **aqui** para descobrir o que é necessário para prosseguir com o guia.
 
 ### Fontes recomendadas
 
