@@ -126,7 +126,7 @@ chmod +x build_rom_generic.sh
 
 O script exibirá um menu interativo:
 
-```bash
+```
   ── Setup (primeira vez) ──────────────────────────────────
   [0] Tudo do zero (todas as etapas em sequência)
   [1] Verificações iniciais do sistema
@@ -267,7 +267,7 @@ Configura `repo`, `git`, `ccache` e variáveis de ambiente no `.bashrc`/`.profil
 
 ### `[4]` Baixar source da ROM
 Inicializa o `repo` e faz o sync do source. Pode demorar **horas** dependendo
-da sua conexão (20–50 GB de download em média).
+da sua conexão (150–200GB de download em média em buids mais recentes).
 
 > [!TIP]
 > Se o sync travar ou cair no meio, basta executar novamente, ele continua de onde parou.
@@ -276,7 +276,7 @@ da sua conexão (20–50 GB de download em média).
 Clona device tree, kernel e vendor blobs. **Você precisa configurar as URLs corretas.**
 
 ### `[6]` Patches
-Etapa personalizável. Por padrão não faz nada — edite a função `step5_patches()` para
+Etapa personalizável. Por padrão não faz nada, edite a função `step5_patches()` para
 adicionar patches específicos da sua ROM.
 
 ### `[7]` Compilar
@@ -329,11 +329,12 @@ git checkout branch-correta
 
 | Mensagem                            | Causa provável                                   | Solução                                      |
 |-------------------------------------|--------------------------------------------------|----------------------------------------------|
-| `Permission denied`                 | Sem permissão no diretório pai                   | `sudo chown $USER:$USER <diretório>`         |
+| `Permission denied`                 | Sem permissão no diretório pai (raíz)            | `sudo chown $USER:$USER <diretório>`         |
 | `Not a directory`                   | Existe um arquivo com o mesmo nome               | `rm <nome>` e crie o diretório novamente     |
 | `No such file or directory`         | Diretório pai não existe                         | `mkdir -p <caminho completo>`                |
 | `mkdir: cannot create directory`    | Caminho inválido ou dispositivo cheio            | Verifique espaço em disco: `df -h`           |
 
+> [!TIP]
 > O script usa `mkdir -p` em todas as criações de diretório. Se mesmo assim falhar,
 > crie os diretórios manualmente e tente novamente.
 
@@ -364,8 +365,8 @@ grep -i "error\|failed\|FAILED" ~/android/rom/build_userdebug_*.log | tail -30
 
 Na primeira compilação, o script gera automaticamente chaves de assinatura em `$BUILD_DIR/certs/`.
 
-> **Guarde essas chaves!** Se perdê-las, builds futuras não serão compatíveis com
-> as anteriores e você precisará fazer wipe completo para instalar uma nova build.
+> [!CAUTION]
+> **Guarde essas chaves!** Se perdê-las, builds futuras não serão compatíveis com as anteriores e você precisará fazer wipe completo para instalar uma nova build.
 
 Faça backup das chaves:
 ```bash
@@ -390,32 +391,32 @@ Consulte a documentação da sua ROM.
 ## Estrutura básica de diretórios
 
 ```
-~/android/rom/          ← Source da ROM (BUILD_DIR)
-├── .repo/              ← Configuração do repo
-├── build/              ← Sistema de build do Android
+~/android/rom/ ← Source da ROM (BUILD_DIR)
+├── .repo/ ← Configuração do repo
+├── build/ ← Sistema de build do Android
 ├── device/
 │   └── fabricante/
-│       └── codename/   ← Device tree
+│       └── codename/ ← Device tree
 ├── kernel/
 │   └── fabricante/
-│       └── chipset/    ← Kernel source
+│       └── chipset/ ← Kernel source
 ├── vendor/
 │   └── fabricante/
-│       └── codename/   ← Vendor blobs
-├── certs/              ← Chaves de assinatura (NÃO delete!)
+│       └── codename/ ← Vendor blobs
+├── certs/ ← Chaves de assinatura (NÃO delete!)
 ├── out/target/product/
-│   └── codename/       ← Arquivos gerados (.zip, .img)
-└── build_*.log         ← Logs de compilação
+│   └── codename/ ← Arquivos gerados (.zip, .img)
+└── build_*.log ← Logs de compilação
 
-~/rom_backup/           ← Backups das customizações (BACKUP_DIR)
-├── 20250101_120000/    ← Backup com timestamp
+~/rom_backup/ ← Backups das customizações (BACKUP_DIR)
+├── 20250101_120000/ ← Backup com timestamp
 ├── 20250115_090000/
-└── latest -> ...       ← Symlink para o mais recente
+└── latest -> ... ← Symlink para o mais recente
 ```
 
 ---
 
-## Adaptação para Diferentes ROMs
+## Adaptação para diferentes ROMs
 
 O script foi escrito para ser adaptado. Pontos principais para customizar:
 
