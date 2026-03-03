@@ -430,7 +430,7 @@ O script foi escrito para ser adaptado. Pontos principais para customizar:
 
 ## Licença
 
-MIT — Faça o que quiser, mas sem garantias. Use por sua conta e risco.
+**[MIT](https://github.com/B9R7M/ACL-SH/blob/main/LICENSE)** — Faça o que quiser, mas sem garantias. Use por sua conta e risco.
 
 ---
 
