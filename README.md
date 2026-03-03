@@ -175,7 +175,7 @@ Instala todos os pacotes necessários via `apt`. Requer `sudo`.
 > Qualquer script malicioso ou usuário não autorizado pode executar comandos como root sem nenhuma barreira.
 > **Use apenas em ambientes controlados** (VM local, container, máquina de build isolada).
 
-### Como configurar
+### `[2.1]` Como configurar
 
 Edite o arquivo de sudoers **sempre via `visudo`** — ele valida a sintaxe antes de salvar, evitando travar o sistema.
 
@@ -195,14 +195,14 @@ seuusuario ALL=(ALL) NOPASSWD: ALL
 
 Salve e feche. A mudança entra em vigor imediatamente.
 
-### Usando um arquivo separado (recomendado)
+### `[2.2]` Usando um arquivo separado (recomendado)
 
 ```bash
 echo "seuusuario ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/nopasswd
 sudo chmod 440 /etc/sudoers.d/nopasswd
 ```
 
-### Reverter (Caso sentir necessidade)
+### `[2.3]` Reverter (Caso sentir necessidade)
 
 Basta remover a linha adicionada via `visudo` ou deletar o arquivo criado:
 
