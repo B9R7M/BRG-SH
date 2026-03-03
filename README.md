@@ -171,7 +171,7 @@ Instala todos os pacotes necessários via `apt`. Requer `sudo`.
 > Qualquer script malicioso ou usuário não autorizado pode executar comandos como root sem nenhuma barreira.
 > **Use apenas em ambientes controlados** (VM local, container, máquina de build isolada).
 
-- Como configurar
+- **Como configurar**
 
   Edite o arquivo de sudoers **sempre via `visudo`** — ele valida a sintaxe antes de salvar, evitando travar o sistema.
 
@@ -191,14 +191,14 @@ Instala todos os pacotes necessários via `apt`. Requer `sudo`.
 
   Salve e feche. A mudança entra em vigor imediatamente.
 
-- Usando um arquivo separado (recomendado)
+- **Usando um arquivo separado (recomendado)**
 
   ```bash
   echo "seuusuario ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/nopasswd
   sudo chmod 440 /etc/sudoers.d/nopasswd
   ```
 
-  ### Reverter (Caso sentir necessidade)
+- **Reverter (Caso sentir necessidade)**
 
   Basta remover a linha adicionada via `visudo` ou deletar o arquivo criado:
 
@@ -214,7 +214,7 @@ Configura `repo`, `git`, `ccache` e variáveis de ambiente no `.bashrc`/`.profil
 > [!TIP]
 > Algumas distribuições Linux exigem configuração prévia do `ccache` antes de iniciar o build — seja por restrições de permissão ou limitações do próprio sistema.
 
-  ### Instalação
+ - **Instalação**
 
   ```bash
   # Debian/Ubuntu
@@ -227,7 +227,7 @@ Configura `repo`, `git`, `ccache` e variáveis de ambiente no `.bashrc`/`.profil
   sudo dnf install ccache
   ```
 
-  ### Configuração básica
+- **Configuração básica**
 
   Defina o diretório e o tamanho máximo do cache:
 
@@ -246,7 +246,7 @@ Configura `repo`, `git`, `ccache` e variáveis de ambiente no `.bashrc`/`.profil
   export CCACHE_DIR=~/.cache/ccache
   ```
 
-  ### Problemas comuns
+- **Problemas comuns**
 
   | Problema | Causa | Solução |
   |---|---|---|
@@ -255,7 +255,7 @@ Configura `repo`, `git`, `ccache` e variáveis de ambiente no `.bashrc`/`.profil
   | Cache não sendo usado | Variável `USE_CCACHE` não exportada | Adicione ao `.bashrc` e rode `source ~/.bashrc` |
 
 
-  ### Verificar se está funcionando
+- **Verificar se está funcionando**
 
   ```bash
   ccache -s
