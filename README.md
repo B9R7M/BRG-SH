@@ -37,6 +37,8 @@ Organizações relevantes: `LineageOS`, `TheMuppets`, `AOSPA`, `crdroidandroid`,
 Esse script também **não fornece todo o conhecimento necessário** para compilar qualquer ROM sem um estudo aprofundado prévio. É indispensável possuir conhecimentos técnicos anteriores sobre o processo para prosseguir com êxito.
 
 Clique **[aqui](https://drive.google.com/drive/folders/1zojYA3EaUBtd_drbRoTjIgxNxFVzFGUI)** para descobrir o básico necessário para prosseguir com o guia.
+> [!NOTE]
+> É uma planilha do Excel no Google Drive, use o Google Sheets ou um leitor de Excel para visualizar.
 
 ---
 
