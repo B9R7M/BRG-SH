@@ -5,7 +5,7 @@ crDroid, PixelOS, Evolution X etc.) em distros Ubuntu/Debian.
 
 ---
 
-## Antes de Começar, leia com Atenção!
+## Leia antes de começar!
 
 Este script **não funciona automaticamente** para qualquer dispositivo.
 Você precisará **configurar manualmente** as variáveis no topo do arquivo
