@@ -15,7 +15,7 @@ e **encontrar os repositórios corretos** para o **SEU dispositivo**. (Se dispon
 
 Ele também **não fornece todo o conhecimento necessário** para compilar qualquer ROM sem um estudo aprofundado prévio. É indispensável possuir conhecimentos técnicos anteriores sobre o processo para prosseguir com êxito.
 
-Clique **aqui** para descobrir o que é necessário para prosseguir com o guia.
+Clique **[aqui](https://drive.google.com/drive/folders/1zojYA3EaUBtd_drbRoTjIgxNxFVzFGUI)** para descobrir o que é necessário para prosseguir com o guia.
 
 ### Fontes recomendadas
 
