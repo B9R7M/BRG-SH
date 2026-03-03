@@ -171,42 +171,42 @@ Instala todos os pacotes necessários via `apt`. Requer `sudo`.
 > Qualquer script malicioso ou usuário não autorizado pode executar comandos como root sem nenhuma barreira.
 > **Use apenas em ambientes controlados** (VM local, container, máquina de build isolada).
 
-### `[2.1]` Como configurar
+  ### Como configurar
 
-Edite o arquivo de sudoers **sempre via `visudo`** — ele valida a sintaxe antes de salvar, evitando travar o sistema.
+  Edite o arquivo de sudoers **sempre via `visudo`** — ele valida a sintaxe antes de salvar, evitando travar o sistema.
 
-```bash
-sudo visudo
-```
+  ```bash
+  sudo visudo
+  ```
 
-Adicione ao final do arquivo:
+  Adicione ao final do arquivo:
 
-```
-# Sem senha para um usuário específico
-seuusuario ALL=(ALL) NOPASSWD: ALL
+  ```
+  # Sem senha para um usuário específico
+  seuusuario ALL=(ALL) NOPASSWD: ALL
 
-# Ou para um grupo inteiro (ex.: sudo/wheel)
-%sudo ALL=(ALL) NOPASSWD: ALL
-```
+  # Ou para um grupo inteiro (ex.: sudo/wheel)
+  %sudo ALL=(ALL) NOPASSWD: ALL
+  ```
 
-Salve e feche. A mudança entra em vigor imediatamente.
+  Salve e feche. A mudança entra em vigor imediatamente.
 
-### `[2.2]` Usando um arquivo separado (recomendado)
+  ### Usando um arquivo separado (recomendado)
 
-```bash
-echo "seuusuario ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/nopasswd
-sudo chmod 440 /etc/sudoers.d/nopasswd
-```
+  ```bash
+  echo "seuusuario ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/nopasswd
+  sudo chmod 440 /etc/sudoers.d/nopasswd
+  ```
 
-### `[2.3]` Reverter (Caso sentir necessidade)
+  ### Reverter (Caso sentir necessidade)
 
-Basta remover a linha adicionada via `visudo` ou deletar o arquivo criado:
+  Basta remover a linha adicionada via `visudo` ou deletar o arquivo criado:
 
-```bash
-sudo rm /etc/sudoers.d/nopasswd
-```
-> [!TIP]
-> Em pipelines CI/CD, prefira criar um usuário dedicado com `NOPASSWD` restrito a comandos específicos, em vez de liberar tudo com `ALL`.
+  ```bash
+  sudo rm /etc/sudoers.d/nopasswd
+  ```
+  > [!TIP]
+  > Em pipelines CI/CD, prefira criar um usuário dedicado com `NOPASSWD` restrito a comandos específicos, em vez de liberar tudo com `ALL`.
 
 ### `[3]` Configurar ambiente
 Configura `repo`, `git`, `ccache` e variáveis de ambiente no `.bashrc`/`.profile`.
@@ -214,54 +214,54 @@ Configura `repo`, `git`, `ccache` e variáveis de ambiente no `.bashrc`/`.profil
 > [!TIP]
 > Algumas distribuições Linux exigem configuração prévia do `ccache` antes de iniciar o build — seja por restrições de permissão ou limitações do próprio sistema.
 
-### `[3.1]` Instalação
+  ### Instalação
 
-```bash
-# Debian/Ubuntu
-sudo apt install ccache
+  ```bash
+  # Debian/Ubuntu
+  sudo apt install ccache
 
-# Arch
-sudo pacman -S ccache
+  # Arch
+  sudo pacman -S ccache
 
-# Fedora/RHEL
-sudo dnf install ccache
-```
+  # Fedora/RHEL
+  sudo dnf install ccache
+  ```
 
-### [3.2]` Configuração básica
+  ### Configuração básica
 
-Defina o diretório e o tamanho máximo do cache:
+  Defina o diretório e o tamanho máximo do cache:
 
-```bash
-# Diretório padrão: ~/.cache/ccache (pode ser alterado)
-export CCACHE_DIR=~/.cache/ccache
+  ```bash
+  # Diretório padrão: ~/.cache/ccache (pode ser alterado)
+  export CCACHE_DIR=~/.cache/ccache
 
-# Tamanho máximo recomendado para builds AOSP: 50–100 GB
-ccache -M 50G
-```
+  # Tamanho máximo recomendado para builds AOSP: 50–100 GB
+  ccache -M 50G
+  ```
 
-Adicione ao `~/.bashrc` ou `~/.zshrc` para persistir:
+  Adicione ao `~/.bashrc` ou `~/.zshrc` para persistir:
 
-```bash
-export USE_CCACHE=1
-export CCACHE_DIR=~/.cache/ccache
-```
+  ```bash
+  export USE_CCACHE=1
+  export CCACHE_DIR=~/.cache/ccache
+  ```
 
-### `[3.2.1]` Problemas comuns
+  ### Problemas comuns
 
-| Problema | Causa | Solução |
-|---|---|---|
-| `permission denied` | Diretório sem permissão de escrita | `sudo chown -R $USER ~/.cache/ccache` |
-| `ccache: not found` | Não instalado ou fora do PATH | Instale e adicione `/usr/lib/ccache` ao `$PATH` |
-| Cache não sendo usado | Variável `USE_CCACHE` não exportada | Adicione ao `.bashrc` e rode `source ~/.bashrc` |
+  | Problema | Causa | Solução |
+  |---|---|---|
+  | `permission denied` | Diretório sem permissão de escrita | `sudo chown -R $USER ~/.cache/ccache` |
+  | `ccache: not found` | Não instalado ou fora do PATH | Instale e adicione `/usr/lib/ccache` ao `$PATH` |
+  | Cache não sendo usado | Variável `USE_CCACHE` não exportada | Adicione ao `.bashrc` e rode `source ~/.bashrc` |
 
 
-### `[3.3]` Verificar se está funcionando
+  ### Verificar se está funcionando
 
-```bash
-ccache -s
-```
+  ```bash
+  ccache -s
+  ```
 
-Após um build, os campos `cache hit` devem aumentar nas execuções seguintes.
+  Após um build, os campos `cache hit` devem aumentar nas execuções seguintes.
 
 ---
 
