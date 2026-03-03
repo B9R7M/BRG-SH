@@ -205,8 +205,8 @@ Instala todos os pacotes necessários via `apt`. Requer `sudo`.
   ```bash
   sudo rm /etc/sudoers.d/nopasswd
   ```
-  > [!TIP]
-  > Em pipelines CI/CD, prefira criar um usuário dedicado com `NOPASSWD` restrito a comandos específicos, em vez de liberar tudo com `ALL`.
+> [!TIP]
+> > Em pipelines CI/CD, prefira criar um usuário dedicado com `NOPASSWD` restrito a comandos específicos, em vez de liberar tudo com `ALL`.
 
 ### `[3]` Configurar ambiente
 Configura `repo`, `git`, `ccache` e variáveis de ambiente no `.bashrc`/`.profile`.
