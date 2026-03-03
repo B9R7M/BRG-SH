@@ -1,9 +1,7 @@
-# ACL-SH
+# BRG-SH (build_rom_generic.sh)
 
-Script interativo em Bash para compilar Custom ROMs AOSP (LineageOS, AxionOS,
+É um sript interativo escrito em Bash para compilar Custom ROMs AOSP (LineageOS, AxionOS,
 crDroid, PixelOS, Evolution X etc.) em distros Ubuntu/Debian.
-
-Baseado em: `axion_pstar.sh` (AxionOS unofficial para Motorola Edge 20 Pro).
 
 ---
 
@@ -28,7 +26,7 @@ e **encontrar os repositórios corretos** para o **SEU dispositivo**. (Se dispon
     - `android_kernel_<fabricante>_<chipset>` → **kernel source**
     - `proprietary_vendor_<fabricante>_<codename>` → **vendor blobs**
   
-Organizações relevantes: `LineageOS`, `TheMuppets`, `AOSPA`, `crdroidandroid`, `PixelOS`
+Organizações relevantes: `LineageOS`, `TheMuppets`, `AOSPA`, `crdroidandroid`, `PixelOS`, `/e/OS`
 
 - **Telegram / Matrix** → Grupos de desenvolvimento da ROM
   Muitos projetos têm grupos onde maintainers e usuários compartilham repositórios,
@@ -81,10 +79,10 @@ GIT_NAME="Seu Nome"
 
 | Componente  | Mínimo recomendado | Notas                                                   |
 |-------------|--------------------|---------------------------------------------------------|
-| CPU         | 4 núcleos          | Quanto mais, melhor                                     |
+| CPU         | 4 núcleos          | Quanto mais, melhor!                                    |
 | RAM         | 16 GB              | Configure swap (veja abaixo)                            |
-| Swap        | 16 GB              | Essencial e útil                                        |
-| Espaço      | 400GB – 1TB        | Mais com GMS/Gapps. SSD recomendado                     |
+| Swap        | 16 GB              | Essencial e útil com pouca RAM                          |
+| Espaço      | 400GB – 1TB        | SSD recomendado                                         |
 | SO          | Ubuntu (ex. 24.04) | Também funciona em Linux Mint, Debian, Pop!_OS          |
 
 ### Configurar Swap
@@ -115,7 +113,7 @@ Para tornar permanente, adicione ao `/etc/fstab`:
 | 12+ núcleos      | 48 GB+  | 10 a 12          |
 
 > [!WARNING]
-> Com mais JOBS do que o hardware suporta, o sistema pode travar por OOM/OOM Killer (Out Of Memory/Killer).
+> O limite de JOBS é a sua quantidade de núcleos no CPU, se ultrapassar o limite, pode fazer sistema travar por OOM/OOM Killer (Out Of Memory/Killer).
 
 ---
 
@@ -130,7 +128,7 @@ O script exibirá um menu interativo:
 
 ```
 ╔══════════════════════════════════════════════════════════╗
-║       Build Script Genérico — ROM Android Custom         ║
+║            Build Script Genérico — ROM Android Custom               ║
 ╚══════════════════════════════════════════════════════════╝
 
   ── Setup (primeira vez) ──────────────────────────────────
@@ -168,6 +166,51 @@ Verifica distro Linux, espaço em disco e memória disponível.
 
 ### `[2]` Instalar dependências
 Instala todos os pacotes necessários via `apt`. Requer `sudo`.
+
+> [!IMPORTANT]
+> A utilização do `sudo` em scripts de automação pode causar falhas no workflow. Para evitar esse problema, é necessário configurar o `visudo` de modo a permitir a execução sem solicitação de senha antes da execução do script.
+
+> [!WARNING]
+> Desativar a senha do `sudo` reduz a segurança do sistema.
+> Qualquer script malicioso ou usuário não autorizado pode executar comandos como root sem nenhuma barreira.
+> **Use apenas em ambientes controlados** (VM local, container, máquina de build isolada).
+
+### Como configurar
+
+Edite o arquivo de sudoers **sempre via `visudo`** — ele valida a sintaxe antes de salvar, evitando travar o sistema.
+
+```bash
+sudo visudo
+```
+
+Adicione ao final do arquivo:
+
+```
+# Sem senha para um usuário específico
+seuusuario ALL=(ALL) NOPASSWD: ALL
+
+# Ou para um grupo inteiro (ex.: sudo/wheel)
+%sudo ALL=(ALL) NOPASSWD: ALL
+```
+
+Salve e feche. A mudança entra em vigor imediatamente.
+
+### Usando um arquivo separado (recomendado)
+
+```bash
+echo "seuusuario ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/nopasswd
+sudo chmod 440 /etc/sudoers.d/nopasswd
+```
+
+### Reverter (Caso sentir necessidade)
+
+Basta remover a linha adicionada via `visudo` ou deletar o arquivo criado:
+
+```bash
+sudo rm /etc/sudoers.d/nopasswd
+```
+> [!TIP]
+> Em pipelines CI/CD, prefira criar um usuário dedicado com `NOPASSWD` restrito a comandos específicos, em vez de liberar tudo com `ALL`.
 
 ### `[3]` Configurar ambiente
 Configura `repo`, `git`, `ccache` e variáveis de ambiente no `.bashrc`/`.profile`.
