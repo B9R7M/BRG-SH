@@ -18,7 +18,7 @@ e **encontrar os repositórios corretos** para o **SEU dispositivo**. (Se dispon
   listar todos os repositórios necessários).
 
 - **LineageOS Wiki** → [wiki.lineageos.org/devices](https://wiki.lineageos.org/devices)
-  - Lista oficial de dispositivos suportados com links diretos para os device trees. (Mesmo que não queira a LineageOS, os trees são base para outras ROMs).
+  - Lista oficial de dispositivos suportados com links diretos para os device trees. (Mesmo que não queira a LineageOS, as trees são base para outras ROMs).
 
 - **GitHub** → [github.com](https://github.com)
   - Pesquise por:
