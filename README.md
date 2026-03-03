@@ -436,10 +436,11 @@ O script foi escrito para ser adaptado. Pontos principais para customizar:
 
 ### Fontes:
 
-- AOSP
-- LineageOS for pstar
-- VegaData (VegaBobo)
-- AxionOS
-- XDA Fóruns
-- TheMuppets
-- Github repo (vendor, kernel, tree, blobs)
+- **[AOSP](https://source.android.com)**
+- **[LineageOS for pstar](https://wiki.lineageos.org/devices/pstar/build)**
+- **[VegaData](https://youtu.be/vX8t9l8gnT0)** (**[VegaBobo - Github](https://github.com/VegaBobo))**
+- **[AxionOS Manifest](https://github.com/AxionAOSP/android)**
+- **[XDA Fóruns](https://xdaforums.com)**
+- **[TheMuppets](https://github.com/TheMuppets)**
+
+---
