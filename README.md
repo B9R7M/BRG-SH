@@ -13,7 +13,7 @@ e **encontrar os repositórios corretos** para o **SEU dispositivo**. (Se dispon
 
 ### Fontes recomendadas
 
-- **XDA Developers** → [xdaforums.com](https://xdaforums.com)
+- **XDA Developers** > [xdaforums.com](https://xdaforums.com)
   - Pesquise pelo modelo do seu dispositivo (Threads de desenvolvimento costumam
   listar todos os repositórios necessários).
 
