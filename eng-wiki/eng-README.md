@@ -1,4 +1,4 @@
-**[Português Brasileiro](https://github.com/B9R7M/BRG-SH/blob/main/README.md)** | **English**
+**[PT-BR](https://github.com/B9R7M/BRG-SH/blob/main/README.md)** | **English**
 
 ---
 
