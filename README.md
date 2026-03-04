@@ -39,7 +39,7 @@ Esse script também **não fornece todo o conhecimento necessário** para compil
 Clique **[AQUI](https://drive.google.com/drive/folders/1zojYA3EaUBtd_drbRoTjIgxNxFVzFGUI)** para acessar o material básico necessário para prosseguir com o guia.
 
 > [!NOTE]  
-> Se trata de uma planilha hospedada no Google Drive. Utilize o Google Sheets ou qualquer software compatível com arquivos Excel `(.xlsx)` para visualizá-la."
+> Se trata de uma planilha hospedada no Google Drive. Utilize o Google Sheets ou qualquer software compatível com arquivos Excel `(.xlsx)` para visualizá-la.
 
 ---
 
