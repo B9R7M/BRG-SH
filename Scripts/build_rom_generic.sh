@@ -1,10 +1,13 @@
 #!/bin/bash
 # =============================================================================
 #  BRG-SH
-#  Versão: 1.0
+#  Versão: 1.1
 # =============================================================================
 
-set -e  # Aborta o script em qualquer erro não tratado
+set -E  # Propaga ERR trap para subshells
+
+# Captura Ctrl+C e volta ao menu em vez de encerrar o script
+trap 'echo ""; warn "Interrompido. Voltando ao menu principal..."; main' INT
 
 # =============================================================================
 #  SEÇÃO 1: CONFIGURAÇÕES — EDITE AQUI ANTES DE EXECUTAR
@@ -129,7 +132,7 @@ NC='\033[0m'  # No Color (reset)
 info()    { echo -e "${BLUE}[INFO]${NC} $1"; }
 success() { echo -e "${GREEN}[OK]${NC} $1"; }
 warn()    { echo -e "${YELLOW}[AVISO]${NC} $1"; }
-error()   { echo -e "${RED}[ERRO]${NC} $1"; exit 1; }
+error()   { echo -e "${RED}[ERRO]${NC} $1"; return 1; }
 tip()     { echo -e "${MAGENTA}[DICA]${NC} $1"; }
 
 # Função de confirmação interativa (resposta s/N)
@@ -137,6 +140,12 @@ confirm() {
     read -rp "$(echo -e "${YELLOW}$1 [s/N]: ${NC}")" resp
     [[ "$resp" =~ ^[sS]$ ]] || { info "Pulando etapa."; return 1; }
     return 0
+}
+
+# Pausa e aguarda Enter antes de voltar ao menu
+pause_menu() {
+    echo ""
+    read -rp "$(echo -e "${CYAN}Pressione Enter para voltar ao menu...${NC}")"
 }
 
 # =============================================================================
@@ -188,7 +197,7 @@ check_ram_and_swap() {
         tip "Se seu HD/SSD for lento, swap em arquivo pode ser mais lento que RAM."
         tip "Nesse caso, considere zram: sudo apt install zram-config"
         echo ""
-        confirm "Continuar mesmo sem swap adequado? (NÃO recomendado)" || exit 1
+        confirm "Continuar mesmo sem swap adequado? (NÃO recomendado)" || return 1
     else
         success "Swap adequado detectado."
     fi
@@ -981,7 +990,8 @@ step_diagnose() {
 #  MENU PRINCIPAL
 # =============================================================================
 
-main() {
+show_menu() {
+    clear
     echo ""
     echo -e "${BLUE}╔══════════════════════════════════════════════════════════╗${NC}"
     echo -e "${BLUE}║                         < BRG-SH >                       ║${NC}"
@@ -1018,33 +1028,51 @@ main() {
     echo ""
     echo "  [q] Sair"
     echo ""
-    read -rp "$(echo -e "${YELLOW}Opção: ${NC}")" opt
+}
 
-    case "$opt" in
-        0)
-            step0_checks
-            step1_dependencies
-            step2_environment
-            step3_source
-            step4_device_trees
-            step5_patches
-            step6_build
-            ;;
-        1) step0_checks ;;
-        2) step1_dependencies ;;
-        3) step2_environment ;;
-        4) step3_source ;;
-        5) step4_device_trees ;;
-        6) step5_patches ;;
-        7) step6_build ;;
-        v|V) select_variant; main ;;
-        b|B) step_backup_save ;;
-        r|R) step_backup_restore ;;
-        s|S) step_sync_safe ;;
-        d|D) step_diagnose ;;
-        q|Q) info "Saindo. Boas builds!"; exit 0 ;;
-        *) warn "Opção inválida."; main ;;
-    esac
+main() {
+    while true; do
+        show_menu
+        read -rp "$(echo -e "${YELLOW}Opção: ${NC}")" opt
+
+        case "$opt" in
+            0)
+                step0_checks && \
+                step1_dependencies && \
+                step2_environment && \
+                step3_source && \
+                step4_device_trees && \
+                step5_patches && \
+                step6_build || true
+                pause_menu
+                ;;
+            1) step0_checks     || true; pause_menu ;;
+            2) step1_dependencies || true; pause_menu ;;
+            3) step2_environment || true; pause_menu ;;
+            4) step3_source     || true; pause_menu ;;
+            5) step4_device_trees || true; pause_menu ;;
+            6) step5_patches    || true; pause_menu ;;
+            7) step6_build      || true; pause_menu ;;
+            v|V) select_variant || true; pause_menu ;;
+            b|B) step_backup_save    || true; pause_menu ;;
+            r|R) step_backup_restore || true; pause_menu ;;
+            s|S) step_sync_safe      || true; pause_menu ;;
+            d|D) step_diagnose       || true; pause_menu ;;
+            q|Q)
+                echo ""
+                info "Saindo. Boas builds!"
+                echo ""
+                exit 0
+                ;;
+            "")
+                # Enter vazio: redesenha o menu sem mensagem de erro
+                ;;
+            *)
+                warn "Opção inválida: '$opt'"
+                sleep 1
+                ;;
+        esac
+    done
 }
 
 # Ponto de entrada
