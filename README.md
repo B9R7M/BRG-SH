@@ -1,3 +1,7 @@
+**Português Brasileiro** | **[English](https://github.com/B9R7M/BRG-SH/blob/main/eng-wiki/eng-README.md)**
+
+---
+
 # BRG-SH (build_rom_generic.sh)
 
 É um script interativo escrito em `bash` para **compilar Custom ROMs AOSP** (LineageOS, AxionOS,
