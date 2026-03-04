@@ -264,7 +264,7 @@ Configura `repo`, `git`, `ccache` e variáveis de ambiente no `.bashrc`/`.profil
   ccache -s
   ```
 
-  Após um build, os campos `cache hit` devem   aumentar nas execuções seguintes.
+  Após a compilação de uma build limpa, os campos `cache hit` devem   aumentar nas execuções seguintes.
 
 ---
 
