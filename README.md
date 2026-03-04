@@ -368,7 +368,7 @@ grep -i "error\|failed\|FAILED" ~/android/rom/build_userdebug_*.log | tail -30
 Na primeira compilação, o script gera automaticamente chaves de assinatura em `$BUILD_DIR/certs/`.
 
 > [!TIP]
-> Caso ocorra algum erro durante a geração de chaves, como a tentativa de criação de um diretório inexistente, pode ser necessário criar manualmente esse diretório. Para identificar o local correto, é recomendado analisar o script presente na árvore de fontes da ROM, que na maioria dos casos encontra-se em `build/envsetup.sh`.
+> Caso ocorra algum erro durante a geração de chaves, como a tentativa de criação de um diretório inexistente, pode ser necessário criar manualmente esse diretório. Para identificar o local correto, é recomendado analisar o script presente na source da ROM, que na maioria dos casos se encontra em `build/envsetup.sh`.
 
 > [!CAUTION]
 > **Guarde essas chaves!** Se perdê-las, builds futuras não serão compatíveis com as anteriores e você precisará fazer **wipe** completo para instalar uma nova build.
