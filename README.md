@@ -9,7 +9,7 @@ crDroid, PixelOS, Evolution X etc.) em distros Ubuntu/Debian.
 
 Este script **não funciona automaticamente** para qualquer dispositivo.
 Você precisará **configurar manualmente** as variáveis no topo do arquivo
-e **encontrar os repositórios corretos** para o **SEU dispositivo**. (Se disponível)
+e **encontrar os repositórios corretos** para o **SEU dispositivo** (Se disponível).
 
 ### Fontes recomendadas
 
