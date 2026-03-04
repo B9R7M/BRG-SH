@@ -234,14 +234,14 @@ Configura `repo`, `git`, `ccache` e variáveis de ambiente no `.bashrc`/`.profil
   Defina o diretório e o tamanho máximo do cache:
 
   ```bash
-  # Diretório padrão: ~/.cache/ccache (pode ser alterado)
+  # Diretório padrão: ~/.cache/ccache (pode    ser alterado)
   export CCACHE_DIR=~/.cache/ccache
 
-  # Tamanho máximo recomendado para builds AOSP: 50–100 GB
+  # Tamanho máximo recomendado para builds     AOSP: 50–100 GB
   ccache -M 50G
   ```
 
-  Adicione ao `~/.bashrc` ou `~/.zshrc` para persistir:
+  Adicione ao `~/.bashrc` ou `~/.zshrc` para   persistir:
 
   ```bash
   export USE_CCACHE=1
@@ -263,7 +263,7 @@ Configura `repo`, `git`, `ccache` e variáveis de ambiente no `.bashrc`/`.profil
   ccache -s
   ```
 
-  Após um build, os campos `cache hit` devem aumentar nas execuções seguintes.
+  Após um build, os campos `cache hit` devem   aumentar nas execuções seguintes.
 
 ---
 
