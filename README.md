@@ -218,16 +218,16 @@ Configura `repo`, `git`, `ccache` e variáveis de ambiente no `.bashrc`/`.profil
 
  - **Instalação**
 
-  ```bash
-  # Debian/Ubuntu
-  sudo apt install ccache
+   ```bash
+   # Debian/Ubuntu
+   sudo apt install ccache
 
-  # Arch
-  sudo pacman -S ccache
+   # Arch
+   sudo pacman -S ccache
 
-  # Fedora/RHEL
-  sudo dnf install ccache
-  ```
+   # Fedora/RHEL
+   sudo dnf install ccache
+   ```
 
 - **Configuração básica**
 
