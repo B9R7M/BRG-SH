@@ -132,7 +132,7 @@ chmod +x build_rom_generic.sh
 O script exibirá um menu interativo:
 
 ```
-── Setup (primeira vez) ──────────────────────────────────
+── Setup (primeira vez) ─────────────────────
 [0] Tudo do zero (todas as etapas em sequência)
 [1] Verificações iniciais do sistema
 [2] Instalar dependências"
@@ -140,14 +140,14 @@ O script exibirá um menu interativo:
 [4] Baixar source da ROM"
 [5] Clonar device trees (device / kernel / vendor)
 [6] Aplicar patches/configurações da ROM
-── Build ──────────────────────────────────
+── Build ─────────────────────────────────
 [7] Compilar (pergunta variante antes)
 [v] Mudar variante de build
-── Backup & Sync ──────────────────────────────────
+── Backup & Sync ──────────────────────────
 [b] Fazer backup das configurações customizadas"
 [r] Restaurar backup (escolhe qual)
 [s] Sync seguro (backup → sync → restore automático)
-── Diagnóstico ─────────────────────────────────
+── Diagnóstico ────────────────────────────
 [d] Verificar branches dos repositórios
 [q] Sair
 ```
