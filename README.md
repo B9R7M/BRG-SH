@@ -1,6 +1,6 @@
 # BRG-SH (build_rom_generic.sh)
 
-É um sript interativo escrito em Bash para compilar Custom ROMs AOSP (LineageOS, AxionOS,
+É um script interativo escrito em `bash` para **compilar Custom ROMs AOSP** (LineageOS, AxionOS,
 crDroid, PixelOS, Evolution X etc.) em distros Ubuntu/Debian.
 
 ---
@@ -101,7 +101,7 @@ Para tornar permanente, adicione ao `/etc/fstab`:
 /swapfile none swap sw 0 0
 ```
 > [!TIP]
-> O swap utiliza o armazenamento interno como área de troca para a memória RAM. Assim, quanto maior a velocidade do SSD, melhor. Sempre que possível, recomenda-se a utilização de SSDs NVMe, que oferecem taxas de transferência superiores em comparação aos modelos SATA.
+> O swap utiliza o armazenamento interno como área de troca para a memória RAM. Assim, quanto maior a velocidade do SSD, melhor. Sempre que possível, é recomendado a utilização de SSDs NVMe, que oferecem taxas de transferência superiores em comparação aos modelos SATA.
 
 > [!CAUTION]
 > Configurar um espaço de swap maior que a quantidade de RAM disponível pode acelerar o desgaste do SSD, reduzindo sua vida útil. Apesar de ser uma prática necessária para evitar a ativação do OOM Killer, é recomendável monitorar constantemente a temperatura e o estado de saúde do SSD durante cargas de trabalho intensas.
@@ -214,7 +214,7 @@ Instala todos os pacotes necessários via `apt`. Requer `sudo`.
 Configura `repo`, `git`, `ccache` e variáveis de ambiente no `.bashrc`/`.profile`.
 
 > [!TIP]
-> Algumas distribuições Linux exigem configuração prévia do `ccache` antes de iniciar o build — seja por restrições de permissão ou limitações do próprio sistema.
+> Algumas distribuições Linux exigem configuração prévia do `ccache` antes de iniciar o build. Seja por restrições de permissão ou limitações do próprio sistema.
 
  - **Instalação**
 
@@ -367,8 +367,11 @@ grep -i "error\|failed\|FAILED" ~/android/rom/build_userdebug_*.log | tail -30
 
 Na primeira compilação, o script gera automaticamente chaves de assinatura em `$BUILD_DIR/certs/`.
 
+> [!TIP]
+> Caso ocorra algum erro durante a geração de chaves, como a tentativa de criação de um diretório inexistente, pode ser necessário criar manualmente esse diretório. Para identificar o local correto, é recomendado analisar o script presente na árvore de fontes da ROM, que na maioria dos casos encontra-se em `build/envsetup.sh`.
+
 > [!CAUTION]
-> **Guarde essas chaves!** Se perdê-las, builds futuras não serão compatíveis com as anteriores e você precisará fazer wipe completo para instalar uma nova build.
+> **Guarde essas chaves!** Se perdê-las, builds futuras não serão compatíveis com as anteriores e você precisará fazer **wipe** completo para instalar uma nova build.
 
 Faça backup das chaves:
 ```bash
