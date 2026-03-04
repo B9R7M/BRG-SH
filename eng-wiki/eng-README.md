@@ -208,7 +208,7 @@ Installs all necessary packages via `apt`. Requires `sudo`.
   ```
 
 > [!TIP]
-> In CI/CD pipelines, prefer creating a dedicated user with `NOPASSWD` restricted to specific commands, rather than allowing everything with `ALL`.
+> > In CI/CD pipelines, prefer creating a dedicated user with `NOPASSWD` restricted to specific commands, rather than allowing everything with `ALL`.
 
 ### `[3]` Configure environment
 Configures `repo`, `git`, `ccache`, and environment variables in `.bashrc`/`.profile`.
