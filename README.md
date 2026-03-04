@@ -17,18 +17,18 @@ e **encontrar os repositórios corretos** para o **SEU dispositivo**. (Se dispon
   - Pesquise pelo modelo do seu dispositivo (Threads de desenvolvimento costumam
   listar todos os repositórios necessários).
 
-- **LineageOS Wiki** → [wiki.lineageos.org/devices](https://wiki.lineageos.org/devices)
+- **LineageOS Wiki** > [wiki.lineageos.org/devices](https://wiki.lineageos.org/devices)
   - Lista oficial de dispositivos suportados com links diretos para os device trees. (Mesmo que não queira a LineageOS, as trees são base para outras ROMs).
 
-- **GitHub** → [github.com](https://github.com)
+- **GitHub** > [github.com](https://github.com)
   - Pesquise por:
-    - `android_device_<fabricante>_<codename>` → **device tree**
-    - `android_kernel_<fabricante>_<chipset>` → **kernel source**
-    - `proprietary_vendor_<fabricante>_<codename>` → **vendor blobs**
+    - `android_device_<fabricante>_<codename>` > **device tree**
+    - `android_kernel_<fabricante>_<chipset>` > **kernel source**
+    - `proprietary_vendor_<fabricante>_<codename>` > **vendor blobs**
   
 Organizações relevantes: `LineageOS`, `TheMuppets`, `AOSPA`, `crdroidandroid`, `PixelOS`, `/e/OS`
 
-- **Telegram / Matrix** → Grupos de desenvolvimento da ROM
+- **Telegram / Matrix** > Grupos de desenvolvimento da ROM
   Muitos projetos têm grupos onde maintainers e usuários compartilham repositórios,
   patches e suporte. Veja o site/GitHub da sua ROM para links de comunidades.
 
@@ -36,9 +36,10 @@ Organizações relevantes: `LineageOS`, `TheMuppets`, `AOSPA`, `crdroidandroid`,
 
 Esse script também **não fornece todo o conhecimento necessário** para compilar qualquer ROM sem um estudo aprofundado prévio. É indispensável possuir conhecimentos técnicos anteriores sobre o processo para prosseguir com êxito.
 
-Clique **[aqui](https://drive.google.com/drive/folders/1zojYA3EaUBtd_drbRoTjIgxNxFVzFGUI)** para descobrir o básico necessário para prosseguir com o guia.
-> [!NOTE]
-> É uma planilha do Excel no Google Drive, use o Google Sheets ou um leitor de Excel para visualizar.
+Clique **[AQUI](https://drive.google.com/drive/folders/1zojYA3EaUBtd_drbRoTjIgxNxFVzFGUI)** para acessar o material básico necessário para prosseguir com o guia.
+
+> [!NOTE]  
+> Se trata de uma planilha hospedada no Google Drive. Utilize o Google Sheets ou qualquer software compatível com arquivos Excel `(.xlsx)` para visualizá-la."
 
 ---
 
