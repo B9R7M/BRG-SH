@@ -132,26 +132,24 @@ chmod +x build_rom_generic.sh
 The script will display an interactive menu:
 
 ```
-  ── Setup (first time) ──────────────────────────────────
-  [0] Everything from scratch (all steps in sequence)
-  [1] Initial system checks
-  [2] Install dependencies
-  [3] Configure environment (repo, git, ccache)
-  [4] Download ROM source
-  [5] Clone device trees (device / kernel / vendor)
-  [6] Apply ROM patches/configurations
-
-  ── Build ─────────────────────────────────────────────────
-  [7] Compile (asks for build variant first)
-  [v] Change build variant
-
-  ── Backup & Sync ─────────────────────────────────────────
-  [b] Backup custom settings
-  [r] Restore a backup (choose which)
-  [s] Safe sync (backup → sync → auto-restore)
-
-  ── Diagnostics ───────────────────────────────────────────
-  [d] Check repository branches
+── Setup (first time) ───────────────────────────────────
+[0] Everything from scratch (all steps in sequence)
+[1] Initial system checks
+[2] Install dependencies"
+[3] Configure environment (repo, git, ccache)
+[4] Download ROM source
+[5] Clone device trees (device / kernel / vendor)
+[6] Apply ROM patches/configurations
+── Build ─────────────────────────────────────────────────
+[7] Compile (asks for variant first)
+[v] Change build variant
+── Backup & Sync ─────────────────────────────────────────
+[b] Backup custom configurations
+[r] Restore backup (choose which)
+[s] Safe sync (backup → sync → auto-restore)
+── Diagnostics ───────────────────────────────────────────
+[d] Check repository branches"
+[q] Exit
 ```
 
 ### First time? Use option `[0]`
