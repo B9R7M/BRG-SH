@@ -59,7 +59,7 @@ MANUFACTURER="fabricante_aqui"
 # Branch da ROM (ex: lineage-23.1, fourteen, udc)
 BRANCH_ROM="nome-da-branch-aqui"
 
-# Branch do device tree (pode ser diferente)
+# Branch da device tree (pode ser diferente)
 BRANCH_DEVICE="nome-da-branch-device-tree"
 
 # URL do manifest da ROM
